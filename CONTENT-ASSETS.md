@@ -1,20 +1,7 @@
-# מפת תוכן ונכסים — הכוח שבך
+# Approved rebuild — 2026-10-20
 
-## חומרי מקור שאומתו בצילומי המסך
-- שבעה תחומים: חרדות ופוביות; התמכרויות והרגלים שליליים; שינה ומתח; תסמינים שלא נפתרו רפואית; דימוי עצמי וביטחון; טראומות מהעבר; חסמים והגשמה.
-- צילומי המסך של האתר הישן מציגים רקע כהה, כותרות מוזהבות ותמונות נושא מעוגלות, וכן כותרת "סיפורי הצלחה".
-- הצילומים אינם קובצי המקור של התמונות; אין להשתמש בהם כקובצי מדיה באתר.
+The previous shared stylesheet and seven treatment images have been replaced. New image assets are exact crops from the user-approved supplied mockups, not generated replacements. Original logo preserved at assets/logo.webp.
 
-## דרישות לפני פרסום
-- ליצור/לייבא תמונת נושא מקורית לכל אחד משבעת התחומים, בגרסאות portrait לסלולר ו-landscape למחשב; לוודא זכויות שימוש.
-- לשלב את הלוגו המאושר בשני מצבי רקע.
-- לייבא סיפורי מקרה מלאים מהמקור, עם הסכמה לפרסום ובלי להמציא פרטים.
-- להחליף טקסטים זמניים בטקסטים המקוריים.
-- לאמת מספר טלפון, וואטסאפ ופרטי קשר; להוסיף מדיניות פרטיות מתאימה לפני טופס.
-- לבדוק ידנית רוחבי 360, 390, 430, 768 ו-1440 פיקסלים.
+No original therapist portrait exists in the inspected development branch or main branch. Do not substitute the mockup portrait as the user's real identity. Home page portrait and testimonials await original materials. Existing article text and internal routes are preserved. Homepage is an initial implementation, not a visually verified final build.
 
-## מבנה נכסים מוצע
-`assets/hero/`, `assets/treatments/`, `assets/stories/`, `assets/brand/`.
-
-## פריסה
-עבודה בענף `develop/mobile-first-rebuild` בלבד עד לאישור מפורש. אתר IIS נפרד מאתר טוהר.
+Work remains: exact visual QA at mobile/tablet/desktop widths, portrait import, authentic success stories, internal page layouts. Production/main remain unchanged.
