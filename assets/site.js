@@ -1,0 +1,1 @@
+const b=document.querySelector('.menu-button'),n=document.querySelector('.main-nav');if(b&&n){b.addEventListener('click',()=>{const o=n.classList.toggle('open');b.setAttribute('aria-expanded',String(o));b.textContent=o?'×':'☰'});document.addEventListener('keydown',e=>{if(e.key==='Escape'){n.classList.remove('open');b.setAttribute('aria-expanded','false');b.textContent='☰'}})}
