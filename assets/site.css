@@ -5,3 +5,11 @@
 
 /* Personal introduction */
 .about-layout img{max-width:340px;aspect-ratio:3/4;height:auto;object-fit:cover;border-radius:22px;mix-blend-mode:normal;box-shadow:0 18px 45px #09292322}.about-layout h1{font-size:clamp(30px,4vw,46px);margin:0 0 12px}.bio-detail{max-width:800px;text-align:right}.bio-detail p{line-height:1.9}@media(max-width:520px){.about-layout{grid-template-columns:1fr;direction:rtl;gap:24px}.about-layout img{max-width:270px}.about-layout h2,.about-layout h1{font-size:30px}.about-layout h3{font-size:23px}.about-layout p{font-size:17px}.about-layout .pill{font-size:15px;padding:11px 22px}}
+
+/* Compact article opening: thumbnail assets must not become full-screen images. */
+.article-hero{display:grid;grid-template-columns:minmax(0,1fr) 128px;column-gap:24px;align-items:center;padding-block:28px 22px;border-bottom:1px solid #09292318;margin-bottom:24px}
+.article-hero>a{grid-column:1/-1;font-size:14px;margin-bottom:14px;color:#76551e}
+.article-hero h1{grid-column:1;grid-row:2;font-size:clamp(28px,4vw,42px);line-height:1.25;margin:0;overflow-wrap:anywhere}
+.article-hero>img{grid-column:2;grid-row:2;width:128px;height:68px;max-width:100%;max-height:none;object-fit:cover;border-radius:10px;display:block}
+.prose{min-width:0}.prose>h3:first-child{margin-top:0}.prose p{line-height:1.85}
+@media(max-width:520px){.article-hero{grid-template-columns:minmax(0,1fr) 112px;column-gap:16px;padding-block:20px;margin-bottom:22px}.article-hero h1{font-size:29px}.article-hero>img{width:112px;height:64px}.prose h3{font-size:23px;line-height:1.4}.prose p{font-size:17px}.brand{min-width:0}}
