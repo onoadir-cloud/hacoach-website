@@ -18,3 +18,6 @@
 .article-hero{display:block;padding-block:24px;margin-bottom:24px}.article-hero>a{display:inline-block;margin-bottom:10px}.article-hero h1{margin:0 0 20px}.article-hero>img{display:block;width:100%;height:280px;max-width:100%;max-height:none;object-fit:cover;object-position:center;border-radius:16px}
 .tile img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}.article-card img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}
 @media(max-width:520px){.article-hero{padding-block:20px;margin-bottom:22px}.article-hero>img{width:100%;height:auto;aspect-ratio:16/9;object-fit:cover}.article-hero h1{font-size:29px;margin-bottom:16px}.tile:last-child img{height:auto;aspect-ratio:16/9;align-self:center}.article-card img{height:100%;aspect-ratio:auto;object-fit:cover}}
+
+/* Preserve every approved treatment composition, including faces and captions. */
+.article-hero>img[src*="treatment-"]{width:100%;height:auto;max-width:850px;max-height:none;aspect-ratio:auto;object-fit:contain;margin-inline:auto}.tile img[src*="treatment-"],.article-card img[src*="treatment-"]{object-fit:contain;object-position:center;background:#eae5d9}@media(max-width:520px){.article-hero>img[src*="treatment-"]{height:auto;aspect-ratio:auto}.tile:last-child img[src*="treatment-"]{height:auto;aspect-ratio:16/9}}
