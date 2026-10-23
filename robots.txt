@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://hacoach-website.vercel.app/sitemap.xml
