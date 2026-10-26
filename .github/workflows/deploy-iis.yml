@@ -1,0 +1,43 @@
+name: Deploy Hacoach to IIS
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: hacoach-production
+  cancel-in-progress: false
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main' && github.repository == 'onoadir-cloud/hacoach-website'
+    runs-on: [self-hosted, Windows, X64, hacoach-production]
+    timeout-minutes: 10
+    steps:
+      - name: Download and deploy exact commit
+        shell: powershell
+        env:
+          DEPLOY_SHA: ${{ github.sha }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          [Net.ServicePointManager]::SecurityProtocol = [Net.SecurityProtocolType]::Tls12
+          if ($env:DEPLOY_SHA -notmatch '^[0-9a-f]{40}$') { throw 'Invalid commit SHA' }
+          $stage = Join-Path $env:RUNNER_TEMP ("hacoach-" + $env:DEPLOY_SHA)
+          New-Item -ItemType Directory -Path $stage -Force | Out-Null
+          $zip = Join-Path $stage 'source.zip'
+          Invoke-WebRequest -UseBasicParsing -Uri ("https://github.com/onoadir-cloud/hacoach-website/archive/" + $env:DEPLOY_SHA + ".zip") -OutFile $zip
+          Expand-Archive -LiteralPath $zip -DestinationPath $stage -Force
+          $source = Join-Path $stage ("hacoach-website-" + $env:DEPLOY_SHA)
+          $target = 'C:\inetpub\hacoach'
+          if (!(Test-Path (Join-Path $source 'index.html'))) { throw 'Missing homepage' }
+          if (!(Test-Path $target)) { throw 'IIS directory missing' }
+          foreach ($folder in @('assets','articles')) {
+            robocopy (Join-Path $source $folder) (Join-Path $target $folder) /E /R:2 /W:2 /NFL /NDL /NJH /NJS
+            if ($LASTEXITCODE -ge 8) { throw "Copy failed: $folder" }
+          }
+          Get-ChildItem -LiteralPath $source -File | Where-Object { $_.Extension -eq '.html' -or $_.Name -in @('robots.txt','sitemap.xml','web.config') } | Copy-Item -Destination $target -Force
+          Set-Content -LiteralPath (Join-Path $target 'deployment-version.txt') -Value $env:DEPLOY_SHA -Encoding ASCII
+          $response = Invoke-WebRequest -UseBasicParsing -Uri 'http://127.0.0.1/index.html' -Headers @{Host='hacoach.co.il'}
+          if ($response.StatusCode -ne 200) { throw 'IIS homepage check failed' }
+          Write-Output ("Deployed " + $env:DEPLOY_SHA)
+          exit 0
