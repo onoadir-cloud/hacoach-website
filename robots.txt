@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Disallow: /image-check.html
+Sitemap: https://hacoach.co.il/sitemap.xml
